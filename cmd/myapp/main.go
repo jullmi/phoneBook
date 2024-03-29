@@ -7,15 +7,16 @@ import (
 	"phoneBook/internal"
 )
 
+
 func main() {
+	data := internal.PopulateData(100)
+
 	arguments := os.Args
 	if len(arguments) == 1 {
 		exe := path.Base(arguments[0])
-		fmt.Printf("Usage: %s search|list <arguments>\n", exe)
+		fmt.Printf("Usage: %s search|list|populate <arguments>\n", exe)
 		return
 	}
-
-	data := internal.UseData()
 
 	switch arguments[1] {
 	case "search":

@@ -1,13 +1,18 @@
 package internal
 
+import "strconv"
+
+
 var Data []Subscriber = []Subscriber{}
 
-func UseData() []Subscriber {
-	sub1 := NewSubscriber("Julia", "Panova", "555-555-777")
-	sub2 := NewSubscriber("Mikal", "Panov", "555-555-887")
-	sub3 := NewSubscriber("Maria", "Ivanova", "555-555-897")
+func PopulateData(len int) []Subscriber {
+	for i := 0; i < len; i++ {
+		name := generateString(4)
+		surname := generateString(5)
+		tel := strconv.Itoa(random(100, 999))
+		Data = append(Data, Subscriber{name, surname, tel})
+	}
 
-	subscribers := append(Data, *sub1, *sub2, *sub3)
-
-	return subscribers
+	return Data
 }
+
