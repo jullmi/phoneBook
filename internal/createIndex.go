@@ -5,7 +5,7 @@ var Index map[string]int
 func CreateIndex() error {
 	Index = make(map[string]int)
 
-	for i, k := range Data {
+	for i, k := range DATA {
 		key := k.Tel
 		Index[key] = i
 	}

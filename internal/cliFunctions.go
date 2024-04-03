@@ -2,10 +2,11 @@ package internal
 
 import (
 	"fmt"
+	"sort"
 )
 
 func Search(searchValue string) *Subscriber {
-	for _, sub := range Data {
+	for _, sub := range DATA {
 		if searchValue == sub.Tel {
 			return &sub
 		}
@@ -14,7 +15,8 @@ func Search(searchValue string) *Subscriber {
 }
 
 func List() {
-	for _, value := range Data {
+	sort.Sort(DATA)
+	for _, value := range DATA {
 		fmt.Println(value)
 	}
 }
@@ -22,9 +24,9 @@ func List() {
 func Insert(pS *Subscriber) error {
 	_, ok := Index[(*pS).Tel]
 	if ok {
-		fmt.Errorf("%s already exists", pS.Tel)
+		return fmt.Errorf("%s already exists", pS.Tel)
 	}
-	Data = append(Data, *pS)
+	DATA = append(DATA, *pS)
 
 	_ = CreateIndex()
 
@@ -41,7 +43,7 @@ func DeleteSubscriber(key string) error {
 	if !ok {
 		return fmt.Errorf("%s cannot be found", key)
 	}
-	Data = append(Data[:i], Data[i+1:]...)
+	DATA = append(DATA[:i], DATA[i+1:]...)
 	delete(Index, key)
 
 	err := SaveCSVfile(PATH)

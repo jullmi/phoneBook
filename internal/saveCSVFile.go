@@ -16,7 +16,7 @@ func SaveCSVfile(filepath string) error {
 
 	csvwriter := csv.NewWriter(csvfile)
 
-	for _, row := range Data {
+	for _, row := range DATA {
 		temp := []string{row.Name, row.Surname, row.Tel, row.LastAccess}
 		_ = csvwriter.Write(temp)
 

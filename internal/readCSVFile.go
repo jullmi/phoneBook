@@ -27,7 +27,7 @@ func ReadCSVFile(filePath string) error {
 
 	for _, line := range lines {
 		temp := &Subscriber{line[0], line[1], line[2], line[3]}
-		Data = append(Data, *temp)
+		DATA = append(DATA, *temp)
 	}
 
 	return nil

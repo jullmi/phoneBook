@@ -17,22 +17,9 @@ func main() {
 		return
 	}
 
-	_, err := os.Stat(internal.PATH)
+	err := internal.SetCSVFile()
 	if err != nil {
-		fmt.Println("CREATING CSV FILE...")
-		file, err := os.Create(internal.PATH)
-		if err != nil {
-			fmt.Println(err)
-		}
-		file.Close()
-	}
-
-	fileInfo, err := os.Stat(internal.PATH)
-
-	mode := fileInfo.Mode()
-	if !mode.IsRegular() {
-		fmt.Println(internal.PATH, "is not a regular file")
-		return
+		fmt.Println(err)
 	}
 
 	err = internal.ReadCSVFile(internal.PATH)
